@@ -1,1 +1,701 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação Ergonómica RULA - Visual</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Estilos personalizados para os botões de rádio e checkbox */
+        .rula-radio:checked + div {
+            border-color: #3b82f6;
+            background-color: #eff6ff;
+            box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+        }
+        .rula-radio-teal:checked + div {
+            border-color: #0d9488;
+            background-color: #f0fdfa;
+            box-shadow: 0 0 0 2px rgba(13, 148, 136, 0.2);
+        }
+        .rula-checkbox:checked + div {
+            border-color: #10b981;
+            background-color: #ecfdf5;
+        }
+        .result-bar {
+            box-shadow: 0 -10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans pb-36">
 
+    <div class="max-w-7xl mx-auto p-4 md:p-6">
+        
+        <!-- Cabeçalho -->
+        <header class="bg-white rounded-xl shadow-sm p-6 mb-6 border-t-4 border-slate-800">
+            <h1 class="text-2xl font-bold text-slate-900 mb-4">Avaliação Ergonómica RULA (Rapid Upper Limb Assessment)</h1>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Avaliador</label>
+                    <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Colaborador</label>
+                    <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Posto de Trabalho</label>
+                    <input type="text" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-1">Data</label>
+                    <input type="date" class="w-full px-3 py-2 border border-slate-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500">
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
+            
+            <!-- SECÇÃO A -->
+            <div class="bg-white rounded-xl shadow-sm border border-blue-200 overflow-hidden">
+                <div class="bg-blue-600 text-white p-4 font-semibold text-lg flex justify-between items-center">
+                    <span>A. Análise de Ombro, Cotovelo e Punho</span>
+                    <span class="bg-blue-800 px-3 py-1 rounded-full text-sm">Pontuação A: <span id="scoreA-display">0</span></span>
+                </div>
+                
+                <div class="p-5 space-y-8">
+                    <!-- Passo 1 -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 flex items-center justify-between">
+                            <span>Passo 1: Posição do Ombro</span>
+                            <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-1 rounded text-sm font-mono">Score: <span id="score-1">1</span></span>
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+                            <!-- Opt 1 -->
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step1" value="1" class="hidden rula-radio" checked>
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <g stroke="#cbd5e1" stroke-width="6" stroke-linecap="round">
+                                            <line x1="30" y1="40" x2="30" y2="90" />
+                                            <circle cx="30" cy="20" r="10" fill="#cbd5e1" stroke="none"/>
+                                        </g>
+                                        <line x1="30" y1="40" x2="30" y2="90" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="30" y1="40" x2="35" y2="80" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flex/Ext até 20° (+1)</span>
+                                </div>
+                            </label>
+                            <!-- Opt 2 -->
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step1" value="2" class="hidden rula-radio">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <g stroke="#cbd5e1" stroke-width="6" stroke-linecap="round">
+                                            <line x1="30" y1="40" x2="30" y2="90" />
+                                            <circle cx="30" cy="20" r="10" fill="#cbd5e1" stroke="none"/>
+                                        </g>
+                                        <line x1="30" y1="40" x2="30" y2="90" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="30" y1="40" x2="60" y2="70" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Ext >20° ou Flex 20-45° (+2)</span>
+                                </div>
+                            </label>
+                            <!-- Opt 3 -->
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step1" value="3" class="hidden rula-radio">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <g stroke="#cbd5e1" stroke-width="6" stroke-linecap="round">
+                                            <line x1="30" y1="40" x2="30" y2="90" />
+                                            <circle cx="30" cy="20" r="10" fill="#cbd5e1" stroke="none"/>
+                                        </g>
+                                        <line x1="30" y1="40" x2="30" y2="90" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="30" y1="40" x2="75" y2="40" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flexão 45°-90° (+3)</span>
+                                </div>
+                            </label>
+                            <!-- Opt 4 -->
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step1" value="4" class="hidden rula-radio">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <g stroke="#cbd5e1" stroke-width="6" stroke-linecap="round">
+                                            <line x1="30" y1="40" x2="30" y2="90" />
+                                            <circle cx="30" cy="20" r="10" fill="#cbd5e1" stroke="none"/>
+                                        </g>
+                                        <line x1="30" y1="40" x2="30" y2="90" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="30" y1="40" x2="50" y2="10" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flexão > 90° (+4)</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="step1_elevado" value="1" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                <span class="ml-2 text-sm">Ombro elevado (+1)</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="step1_abduzido" value="1" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                <span class="ml-2 text-sm">Ombro abduzido (+1)</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="step1_apoiado" value="-1" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                <span class="ml-2 text-sm">Braço apoiado ou pessoa inclinada (-1)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Passo 2 -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 flex items-center justify-between">
+                            <span>Passo 2: Posição do Cotovelo</span>
+                            <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-1 rounded text-sm font-mono">Score: <span id="score-2">1</span></span>
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+                            <label class="cursor-pointer h-full md:col-span-2">
+                                <input type="radio" name="step2" value="1" class="hidden rula-radio" checked>
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex items-center gap-4 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16 shrink-0">
+                                        <line x1="20" y1="50" x2="50" y2="50" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+                                        <line x1="50" y1="50" x2="50" y2="15" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+                                        <path d="M 50 35 A 15 15 0 0 0 35 50" fill="none" stroke="#3b82f6" stroke-width="2"/>
+                                    </svg>
+                                    <span class="text-sm font-medium text-left">Flexão entre 60° e 100° (+1)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer h-full md:col-span-2">
+                                <input type="radio" name="step2" value="2" class="hidden rula-radio">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex items-center gap-4 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16 shrink-0">
+                                        <line x1="20" y1="50" x2="50" y2="50" stroke="#cbd5e1" stroke-width="6" stroke-linecap="round"/>
+                                        <line x1="50" y1="50" x2="85" y2="50" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="text-sm font-medium text-left">Flexão < 60° ou > 100° (+2)</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="step2_cruzado" value="1" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                <span class="ml-2 text-sm">Trabalhando cruzando a linha média ou para fora do corpo (+1)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Passo 3 -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 flex items-center justify-between">
+                            <span>Passo 3: Posição do Punho</span>
+                            <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-1 rounded text-sm font-mono">Score: <span id="score-3">1</span></span>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-3">
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step3" value="1" class="hidden rula-radio" checked>
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <line x1="10" y1="50" x2="55" y2="50" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+                                        <line x1="55" y1="50" x2="85" y2="50" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Neutro 0° (+1)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step3" value="2" class="hidden rula-radio">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <line x1="10" y1="50" x2="55" y2="50" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+                                        <line x1="55" y1="50" x2="80" y2="35" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+                                        <line x1="55" y1="50" x2="85" y2="50" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flex/Ext 0°-15° (+2)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step3" value="3" class="hidden rula-radio">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <line x1="10" y1="50" x2="55" y2="50" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+                                        <line x1="55" y1="50" x2="75" y2="15" stroke="#3b82f6" stroke-width="6" stroke-linecap="round"/>
+                                        <line x1="55" y1="50" x2="85" y2="50" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flex/Ext > 15° (+3)</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="step3_desvio" value="1" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                                <span class="ml-2 text-sm">Desvio ulnar ou radial do punho (+1)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Passo 4 -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 flex items-center justify-between">
+                            <span>Passo 4: Pronossupinação do Punho (Giro)</span>
+                            <span class="bg-blue-50 border border-blue-200 text-blue-700 px-2 py-1 rounded text-sm font-mono">Score: <span id="score-4">1</span></span>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="step4" value="1" class="hidden rula-radio" checked>
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all flex items-center justify-center gap-3 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-10 h-10">
+                                        <ellipse cx="50" cy="50" rx="30" ry="15" fill="none" stroke="#3b82f6" stroke-width="4"/>
+                                        <line x1="20" y1="50" x2="80" y2="50" stroke="#3b82f6" stroke-width="2"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Posição neutra (+1)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="step4" value="2" class="hidden rula-radio">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all flex items-center justify-center gap-3 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-10 h-10">
+                                        <ellipse cx="50" cy="50" rx="30" ry="15" fill="none" stroke="#3b82f6" stroke-width="4" transform="rotate(45 50 50)"/>
+                                        <path d="M 15 50 A 35 35 0 0 1 50 15" fill="none" stroke="#cbd5e1" stroke-width="3" marker-end="url(#arrow)"/>
+                                        <defs>
+                                            <marker id="arrow" viewBox="0 0 10 10" refX="5" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                                              <path d="M 0 0 L 10 5 L 0 10 z" fill="#cbd5e1" />
+                                            </marker>
+                                        </defs>
+                                    </svg>
+                                    <span class="text-sm font-medium">No limite de giro (+2)</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr class="border-blue-200">
+
+                    <div class="bg-blue-50 p-4 rounded-xl border border-blue-200 flex justify-between items-center font-bold">
+                        <span class="text-blue-900">Passo 5: Subtotal Tabela A</span>
+                        <span class="text-2xl text-blue-700 bg-white px-4 py-1 rounded-lg border border-blue-200 shadow-sm" id="score-5">1</span>
+                    </div>
+
+                    <!-- Passos 6 e 7 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Passo 6: Atividade Muscular</h3>
+                            <label class="flex items-start cursor-pointer bg-slate-50 p-3 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
+                                <input type="checkbox" id="step6" value="1" class="form-checkbox h-5 w-5 text-blue-600 rounded mt-0.5">
+                                <span class="ml-2 text-sm text-slate-700">Postura estática (>1 min) OU repetitiva (>4x/min) (+1)</span>
+                            </label>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Passo 7: Força / Carga</h3>
+                            <select id="step7" class="w-full bg-slate-50 border border-slate-200 text-slate-700 text-sm rounded-xl focus:ring-blue-500 focus:border-blue-500 block p-3">
+                                <option value="0">Carga < 2kg intermitente (+0)</option>
+                                <option value="1">Carga 2kg a 10kg intermitente (+1)</option>
+                                <option value="2">Carga 2kg a 10kg estática/repetitiva (+2)</option>
+                                <option value="3">Carga > 10kg repetitiva ou choques (+3)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- SECÇÃO B -->
+            <div class="bg-white rounded-xl shadow-sm border border-teal-200 overflow-hidden">
+                <div class="bg-teal-600 text-white p-4 font-semibold text-lg flex justify-between items-center">
+                    <span>B. Análise de Pescoço, Tronco e Pernas</span>
+                    <span class="bg-teal-800 px-3 py-1 rounded-full text-sm">Pontuação B: <span id="scoreB-display">0</span></span>
+                </div>
+                
+                <div class="p-5 space-y-8">
+                    <!-- Passo 9 -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 flex items-center justify-between">
+                            <span>Passo 9: Posição do Pescoço</span>
+                            <span class="bg-teal-50 border border-teal-200 text-teal-700 px-2 py-1 rounded text-sm font-mono">Score: <span id="score-9">1</span></span>
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step9" value="1" class="hidden rula-radio-teal" checked>
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <line x1="50" y1="50" x2="50" y2="100" stroke="#cbd5e1" stroke-width="12" stroke-linecap="round"/>
+                                        <line x1="50" y1="50" x2="50" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="50" y1="50" x2="55" y2="20" stroke="#0d9488" stroke-width="8" stroke-linecap="round"/>
+                                        <circle cx="55" cy="15" r="12" fill="#0d9488"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flexão 0°-10° (+1)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step9" value="2" class="hidden rula-radio-teal">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <line x1="50" y1="50" x2="50" y2="100" stroke="#cbd5e1" stroke-width="12" stroke-linecap="round"/>
+                                        <line x1="50" y1="50" x2="50" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="50" y1="50" x2="70" y2="30" stroke="#0d9488" stroke-width="8" stroke-linecap="round"/>
+                                        <circle cx="75" cy="25" r="12" fill="#0d9488"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flexão 10°-20° (+2)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step9" value="3" class="hidden rula-radio-teal">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <line x1="50" y1="50" x2="50" y2="100" stroke="#cbd5e1" stroke-width="12" stroke-linecap="round"/>
+                                        <line x1="50" y1="50" x2="50" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="50" y1="50" x2="85" y2="45" stroke="#0d9488" stroke-width="8" stroke-linecap="round"/>
+                                        <circle cx="90" cy="45" r="12" fill="#0d9488"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flexão > 20° (+3)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step9" value="4" class="hidden rula-radio-teal">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <line x1="50" y1="50" x2="50" y2="100" stroke="#cbd5e1" stroke-width="12" stroke-linecap="round"/>
+                                        <line x1="50" y1="50" x2="50" y2="10" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="50" y1="50" x2="30" y2="30" stroke="#0d9488" stroke-width="8" stroke-linecap="round"/>
+                                        <circle cx="25" cy="25" r="12" fill="#0d9488"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Extensão (+4)</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="step9_rotacao" value="1" class="form-checkbox h-5 w-5 text-teal-600 rounded">
+                                <span class="ml-2 text-sm">Pescoço torcido (rotação) (+1)</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="step9_inclinacao" value="1" class="form-checkbox h-5 w-5 text-teal-600 rounded">
+                                <span class="ml-2 text-sm">Pescoço inclinado lateralmente (+1)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Passo 10 -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 flex items-center justify-between">
+                            <span>Passo 10: Posição do Tronco</span>
+                            <span class="bg-teal-50 border border-teal-200 text-teal-700 px-2 py-1 rounded text-sm font-mono">Score: <span id="score-10">1</span></span>
+                        </h3>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 mb-3">
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step10" value="1" class="hidden rula-radio-teal" checked>
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <path d="M45 80 L45 100 M55 80 L55 100" stroke="#cbd5e1" stroke-width="6"/>
+                                        <line x1="35" y1="80" x2="65" y2="80" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+                                        <line x1="50" y1="80" x2="50" y2="30" stroke="#0d9488" stroke-width="12" stroke-linecap="round"/>
+                                        <circle cx="50" cy="15" r="10" fill="#0d9488"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Ereto 0° (+1)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step10" value="2" class="hidden rula-radio-teal">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <path d="M45 80 L45 100 M55 80 L55 100" stroke="#cbd5e1" stroke-width="6"/>
+                                        <line x1="35" y1="80" x2="65" y2="80" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+                                        <line x1="50" y1="80" x2="50" y2="20" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="50" y1="80" x2="70" y2="40" stroke="#0d9488" stroke-width="12" stroke-linecap="round"/>
+                                        <circle cx="75" cy="25" r="10" fill="#0d9488"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flexão 0°-20° (+2)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step10" value="3" class="hidden rula-radio-teal">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <path d="M45 80 L45 100 M55 80 L55 100" stroke="#cbd5e1" stroke-width="6"/>
+                                        <line x1="35" y1="80" x2="65" y2="80" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+                                        <line x1="50" y1="80" x2="50" y2="20" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="50" y1="80" x2="85" y2="60" stroke="#0d9488" stroke-width="12" stroke-linecap="round"/>
+                                        <circle cx="95" cy="50" r="10" fill="#0d9488"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flexão 20°-60° (+3)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer h-full">
+                                <input type="radio" name="step10" value="4" class="hidden rula-radio-teal">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all h-full flex flex-col items-center gap-2 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-16 h-16">
+                                        <path d="M45 80 L45 100 M55 80 L55 100" stroke="#cbd5e1" stroke-width="6"/>
+                                        <line x1="35" y1="80" x2="65" y2="80" stroke="#cbd5e1" stroke-width="8" stroke-linecap="round"/>
+                                        <line x1="50" y1="80" x2="50" y2="20" stroke="#cbd5e1" stroke-width="2" stroke-dasharray="4"/>
+                                        <line x1="50" y1="80" x2="95" y2="85" stroke="#0d9488" stroke-width="12" stroke-linecap="round"/>
+                                        <circle cx="95" cy="95" r="10" fill="#0d9488"/>
+                                    </svg>
+                                    <span class="text-sm font-medium">Flexão > 60° (+4)</span>
+                                </div>
+                            </label>
+                        </div>
+                        <div class="space-y-2 bg-slate-50 p-3 rounded-lg border border-slate-100">
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="step10_rotacao" value="1" class="form-checkbox h-5 w-5 text-teal-600 rounded">
+                                <span class="ml-2 text-sm">Tronco torcido (rotação) (+1)</span>
+                            </label>
+                            <label class="flex items-center cursor-pointer">
+                                <input type="checkbox" id="step10_inclinacao" value="1" class="form-checkbox h-5 w-5 text-teal-600 rounded">
+                                <span class="ml-2 text-sm">Tronco inclinado lateralmente (+1)</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <!-- Passo 11 -->
+                    <div>
+                        <h3 class="font-bold text-lg mb-3 flex items-center justify-between">
+                            <span>Passo 11: Pernas e Pés</span>
+                            <span class="bg-teal-50 border border-teal-200 text-teal-700 px-2 py-1 rounded text-sm font-mono">Score: <span id="score-11">1</span></span>
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+                            <label class="cursor-pointer">
+                                <input type="radio" name="step11" value="1" class="hidden rula-radio-teal" checked>
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all flex items-center gap-4 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-12 h-12 shrink-0">
+                                        <line x1="10" y1="90" x2="90" y2="90" stroke="#cbd5e1" stroke-width="4"/>
+                                        <path d="M35 10 L35 90 M65 10 L65 90" stroke="#0d9488" stroke-width="8" stroke-linecap="round"/>
+                                    </svg>
+                                    <span class="text-sm font-medium text-left">Pernas e pés bem apoiados, peso equilibrado (+1)</span>
+                                </div>
+                            </label>
+                            <label class="cursor-pointer">
+                                <input type="radio" name="step11" value="2" class="hidden rula-radio-teal">
+                                <div class="border-2 border-slate-200 rounded-xl p-3 text-center transition-all flex items-center gap-4 hover:bg-slate-50">
+                                    <svg viewBox="0 0 100 100" class="w-12 h-12 shrink-0">
+                                        <line x1="10" y1="90" x2="90" y2="90" stroke="#cbd5e1" stroke-width="4"/>
+                                        <path d="M50 10 L50 90" stroke="#0d9488" stroke-width="8" stroke-linecap="round"/>
+                                        <path d="M50 40 L70 60 L70 80" stroke="#0d9488" stroke-width="8" stroke-linecap="round" fill="none"/>
+                                    </svg>
+                                    <span class="text-sm font-medium text-left">Apoio numa perna ou postura desequilibrada (+2)</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+
+                    <hr class="border-teal-200">
+
+                    <div class="bg-teal-50 p-4 rounded-xl border border-teal-200 flex justify-between items-center font-bold">
+                        <span class="text-teal-900">Passo 12: Subtotal Tabela B</span>
+                        <span class="text-2xl text-teal-700 bg-white px-4 py-1 rounded-lg border border-teal-200 shadow-sm" id="score-12">1</span>
+                    </div>
+
+                    <!-- Passos 13 e 14 -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Passo 13: Atividade Muscular</h3>
+                            <label class="flex items-start cursor-pointer bg-slate-50 p-3 border border-slate-200 rounded-xl hover:bg-slate-100 transition-colors">
+                                <input type="checkbox" id="step13" value="1" class="form-checkbox h-5 w-5 text-teal-600 rounded mt-0.5">
+                                <span class="ml-2 text-sm text-slate-700">Postura estática (>1 min) OU repetitiva (>4x/min) (+1)</span>
+                            </label>
+                        </div>
+                        <div>
+                            <h3 class="font-bold text-lg mb-2">Passo 14: Força / Carga</h3>
+                            <select id="step14" class="w-full bg-slate-50 border border-slate-200 text-slate-700 text-sm rounded-xl focus:ring-teal-500 focus:border-teal-500 block p-3">
+                                <option value="0">Carga < 2kg intermitente (+0)</option>
+                                <option value="1">Carga 2kg a 10kg intermitente (+1)</option>
+                                <option value="2">Carga 2kg a 10kg estática/repetitiva (+2)</option>
+                                <option value="3">Carga > 10kg repetitiva ou choques (+3)</option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barra de Resultados Fixa no Rodapé -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white result-bar border-t border-slate-200 z-50 transition-colors duration-500" id="result-container">
+        <div class="max-w-7xl mx-auto px-4 py-3 md:py-4 flex flex-col md:flex-row items-center justify-between gap-4">
+            <div class="flex items-center gap-2 md:gap-4 w-full md:w-auto justify-center">
+                <div class="bg-slate-100 rounded-lg px-3 py-2 text-center w-24">
+                    <div class="text-[10px] text-slate-500 uppercase font-bold">Braço</div>
+                    <div class="text-xl font-bold text-blue-700" id="final-score-A">1</div>
+                </div>
+                <div class="text-xl text-slate-400 font-bold">+</div>
+                <div class="bg-slate-100 rounded-lg px-3 py-2 text-center w-24">
+                    <div class="text-[10px] text-slate-500 uppercase font-bold">Tronco</div>
+                    <div class="text-xl font-bold text-teal-700" id="final-score-B">1</div>
+                </div>
+                <div class="text-xl text-slate-400 font-bold">=</div>
+                <div class="text-center ml-2">
+                    <div class="text-xs font-bold text-slate-700">SCORE FINAL RULA</div>
+                    <div class="text-4xl font-black text-slate-900 leading-none" id="rula-final-score">1</div>
+                </div>
+            </div>
+            
+            <div class="flex-1 w-full md:w-auto md:ml-8">
+                <div class="rounded-xl px-4 py-3 text-white shadow-sm flex items-center justify-center md:justify-start gap-3 transition-colors duration-500 bg-emerald-500" id="risk-banner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" id="risk-icon" />
+                    </svg>
+                    <div>
+                        <div class="font-bold text-lg leading-tight" id="risk-level">Risco Insignificante</div>
+                        <div class="text-sm opacity-90 leading-tight" id="risk-action">Postura aceitável. Nenhuma ação necessária.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- TABELAS DE REFERÊNCIA RULA ---
+        
+        const tableA = [
+            [ [[1,2], [2,2], [2,3], [3,3]], [[2,2], [2,2], [3,3], [3,3]], [[2,3], [3,3], [3,3], [4,4]] ],
+            [ [[2,3], [3,3], [3,4], [4,4]], [[3,3], [3,3], [3,4], [4,4]], [[3,4], [4,4], [4,4], [5,5]] ],
+            [ [[3,3], [4,4], [4,4], [5,5]], [[3,4], [4,4], [4,4], [5,5]], [[4,4], [4,4], [4,5], [5,5]] ],
+            [ [[4,4], [4,4], [4,5], [5,5]], [[4,4], [4,4], [4,5], [5,5]], [[4,4], [4,5], [5,5], [6,6]] ],
+            [ [[5,5], [5,5], [5,6], [6,7]], [[5,6], [6,6], [6,7], [7,7]], [[6,6], [6,7], [7,7], [7,8]] ],
+            [ [[7,7], [7,7], [7,8], [8,9]], [[8,8], [8,8], [8,9], [9,9]], [[9,9], [9,9], [9,9], [9,9]] ]
+        ];
+
+        const tableB = [
+            [ [1,3], [2,3], [3,4], [5,5], [6,6], [7,7] ],
+            [ [2,3], [2,3], [4,5], [5,5], [6,7], [7,7] ],
+            [ [3,3], [3,4], [4,5], [5,6], [6,7], [7,7] ],
+            [ [5,5], [5,6], [6,7], [7,7], [7,8], [8,8] ],
+            [ [7,7], [7,7], [7,8], [8,8], [8,8], [8,8] ],
+            [ [8,8], [8,8], [8,8], [8,9], [9,9], [9,9] ]
+        ];
+
+        const tableC = [
+            [1, 2, 3, 3, 4, 5, 5],
+            [2, 2, 3, 4, 4, 5, 5],
+            [3, 3, 3, 4, 4, 5, 6],
+            [3, 3, 3, 4, 5, 6, 6],
+            [4, 4, 4, 5, 6, 7, 7],
+            [4, 4, 5, 6, 6, 7, 7],
+            [5, 5, 6, 6, 7, 7, 7],
+            [5, 5, 6, 7, 7, 7, 7]
+        ];
+
+        // --- LÓGICA DE CÁLCULO ---
+        
+        function getVal(name) {
+            const el = document.querySelector(`input[name="${name}"]:checked`);
+            return el ? parseInt(el.value) : 0;
+        }
+
+        function getSelectVal(id) {
+            return parseInt(document.getElementById(id).value);
+        }
+
+        function getCheck(id) {
+            const el = document.getElementById(id);
+            return (el && el.checked) ? parseInt(el.value) : 0;
+        }
+
+        function clamp(val, min, max) {
+            return Math.max(min, Math.min(val, max));
+        }
+
+        function calculate() {
+            // SECÇÃO A
+            let s1_base = getVal('step1');
+            let s1_mod = getCheck('step1_elevado') + getCheck('step1_abduzido') + getCheck('step1_apoiado');
+            let score1 = clamp(s1_base + s1_mod, 1, 6);
+            document.getElementById('score-1').innerText = score1;
+
+            let s2_base = getVal('step2');
+            let s2_mod = getCheck('step2_cruzado');
+            let score2 = clamp(s2_base + s2_mod, 1, 3);
+            document.getElementById('score-2').innerText = score2;
+
+            let s3_base = getVal('step3');
+            let s3_mod = getCheck('step3_desvio');
+            let score3 = clamp(s3_base + s3_mod, 1, 4);
+            document.getElementById('score-3').innerText = score3;
+
+            let score4 = clamp(getVal('step4'), 1, 2);
+            
+            let score5 = tableA[score1 - 1][score2 - 1][score3 - 1][score4 - 1];
+            document.getElementById('score-5').innerText = score5;
+
+            let score6 = getCheck('step6');
+            let score7 = getSelectVal('step7');
+            let finalA = score5 + score6 + score7;
+            
+            document.getElementById('scoreA-display').innerText = finalA;
+            document.getElementById('final-score-A').innerText = finalA;
+
+            // SECÇÃO B
+            let s9_base = getVal('step9');
+            let s9_mod = getCheck('step9_rotacao') + getCheck('step9_inclinacao');
+            let score9 = clamp(s9_base + s9_mod, 1, 6);
+            document.getElementById('score-9').innerText = score9;
+
+            let s10_base = getVal('step10');
+            let s10_mod = getCheck('step10_rotacao') + getCheck('step10_inclinacao');
+            let score10 = clamp(s10_base + s10_mod, 1, 6);
+            document.getElementById('score-10').innerText = score10;
+
+            let score11 = clamp(getVal('step11'), 1, 2);
+            
+            let score12 = tableB[score9 - 1][score10 - 1][score11 - 1];
+            document.getElementById('score-12').innerText = score12;
+
+            let score13 = getCheck('step13');
+            let score14 = getSelectVal('step14');
+            let finalB = score12 + score13 + score14;
+            
+            document.getElementById('scoreB-display').innerText = finalB;
+            document.getElementById('final-score-B').innerText = finalB;
+
+            // SCORE FINAL
+            let idxA = clamp(finalA, 1, 8) - 1;
+            let idxB = clamp(finalB, 1, 7) - 1;
+            let finalRULA = tableC[idxA][idxB];
+            
+            document.getElementById('rula-final-score').innerText = finalRULA;
+            updateRiskBanner(finalRULA);
+        }
+
+        function updateRiskBanner(score) {
+            const banner = document.getElementById('risk-banner');
+            const levelText = document.getElementById('risk-level');
+            const actionText = document.getElementById('risk-action');
+            const icon = document.getElementById('risk-icon');
+
+            banner.classList.remove('bg-emerald-500', 'bg-amber-400', 'bg-orange-500', 'bg-rose-600', 'text-slate-900', 'text-white');
+
+            if (score <= 2) {
+                banner.classList.add('bg-emerald-500', 'text-white');
+                levelText.innerText = "Nível 1 - Risco Insignificante";
+                actionText.innerText = "Postura aceitável. Nenhuma ação necessária.";
+                icon.setAttribute('d', 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'); // Check circle
+            } else if (score <= 4) {
+                banner.classList.add('bg-amber-400', 'text-slate-900');
+                levelText.innerText = "Nível 2 - Risco Baixo";
+                actionText.innerText = "Investigações futuras e mudanças podem ser necessárias.";
+                icon.setAttribute('d', 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'); // Warning triangle
+            } else if (score <= 6) {
+                banner.classList.add('bg-orange-500', 'text-white');
+                levelText.innerText = "Nível 3 - Risco Médio";
+                actionText.innerText = "Investigação detalhada e melhorias devem ser consideradas.";
+                icon.setAttribute('d', 'M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'); // Exclamation circle
+            } else {
+                banner.classList.add('bg-rose-600', 'text-white');
+                levelText.innerText = "Nível 4 - Risco Alto";
+                actionText.innerText = "Modificações e investigações imediatas são necessárias!";
+                icon.setAttribute('d', 'M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z'); // Warning triangle
+            }
+        }
+
+        // Adicionar eventos
+        document.querySelectorAll('input, select').forEach(input => {
+            input.addEventListener('change', calculate);
+        });
+
+        // Cálculo inicial
+        document.addEventListener('DOMContentLoaded', calculate);
+
+    </script>
+</body>
+</html>
+
+```
